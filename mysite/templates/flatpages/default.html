@@ -1,0 +1,58 @@
+<!--<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}style.css" />
+    <title>{{ flatpage.title }}</title>
+  </head>
+  <body>
+    {{ flatpage.content }}
+  </body>
+</html>-->
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <link rel="stylesheet" href="{{ STATIC_URL }}styles.css">
+      <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap.css">
+      <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap.min.css">
+      <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap.responsive.css">
+      <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap.responsive.min.css">
+      <title>{{ flatpage.title }}</title>
+   </head>
+   <body>
+      <header class="navbar navbar-fixed-top navbar-inverse">
+         <div class="navbar-inner">
+            <div class="container">
+               <nav>
+                  {% load flatpages %}
+		  <ul class="nav pull-right">
+		     {% get_flatpages '/home/' as home_pages %}
+		     <li><a href="{{ home_pages.0.url }}">{{ home_pages.0.title }}</a></li>
+		     {% get_flatpages '/help/' as help_pages %}
+		     <li><a href="{{ help_pages.0.url }}">{{ help_pages.0.title }}</a></li>
+		  </ul>
+	       </nav>
+            </div>
+         </div>
+      </header>
+
+      <div class="container">
+         {{ flatpage.content }}
+         <footer class="footer">
+	    <small>
+               <a href="http://railstutorial.org/">Rails Tutorial</a>
+	       by Michael Hartl
+	    </small>
+	    <nav>
+               <ul>
+                   {% get_flatpages '/about/' as about_pages %}
+		   <li><a href="{{ about_pages.0.url }}">{{ about_pages.0.title }}</a></li>
+		   {% get_flatpages '/contact/' as contact_pages %}
+		   <li><a href="{{ contact_pages.0.url }}">{{ contact_pages.0.title }}</a></li>
+	       </ul>
+	    </nav>
+	</footer>
+      </div>
+   </body>
+</html>
+
